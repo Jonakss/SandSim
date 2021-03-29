@@ -48,17 +48,6 @@ void Base::render(){
 	for (int i = 0; i < COLS; i++){
 		for (int j = 0; j < ROWS; j++){
 			particles[i][j]->draw(this->window);
-			// int *p = &particles[i][j];
-			// sf::RectangleShape r = sf::RectangleShape(sf::Vector2f(5,5));
-			// r.setPosition(sf::Vector2f(i*6,j*6));
-			// if(*p==0)
-			// 	r.setFillColor(sf::Color::Black);
-			// else if(*p==1)
-			// 	r.setFillColor(sf::Color::Yellow);
-			// else
-			// 	r.setFillColor(sf::Color::Blue);
-			
-			//this->window->draw(r);
 		};
 	};
 	
@@ -73,22 +62,6 @@ void Base::update(){
 	for (int i = 0; i < COLS; i++)
 		for (int j = 0; j < ROWS; j++){
 			particles[i][j]->update();
-	// 		x++;
-	// 		if(particles[i][j] != 0){ //is not empty
-	// 			// bool d = (j < ROWS-1&&particles[i][j+1] == 0); posibble branchless
-	// 			// particles[i][j+1] = d||particles[i][j+1];
-	// 			// particles[i][j]= !d;
-	// 			if(j < ROWS-1&&particles[i][j+1] == 0){ // below empty
-	// 				particles[i][j+1] = 1;
-	// 				particles[i][j] = 0;
-	// 			}else if(j < ROWS-1&&i>0 && particles[i-1][j+1] == 0){ //down and left
-	// 				particles[i-1][j+1] = 1;
-	// 				particles[i][j] = 0;
-	// 			}else if(j < ROWS-1&&i<COLS-1 && particles[i+1][j+1] == 0){ //down and left
-	// 				particles[i+1][j+1] = 1;
-	// 				particles[i][j] = 0;
-	// 			}
-	// 		}
 		};
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 
