@@ -29,6 +29,7 @@ void Base::initWindow(){
 };
 
 Base::Base(){
+	this->paused = false;
 	this->initWindow();
 };
 
@@ -58,22 +59,20 @@ void Base::render(){
 
 void Base::update(){
 	this->updateEvents();
-	int x=0;
-	for (int i = 0; i < COLS; i++)
-		for (int j = 0; j < ROWS; j++){
-			particles[i][j]->update();
-		};
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-
-			this->mx = sf::Mouse::getPosition(*this->window).x/6;
-			this->my = sf::Mouse::getPosition(*this->window).y/6;
-				if(((this->mx>=0)&&(this->mx<COLS))&&((this->my>=0)&&(this->my<ROWS)))
-					if(particles[mx][my]->getType() == type_::VOID)
-						particles[mx][my]->changeType(type_::SAND);
-					else
-						particles[mx][my]->changeType(type_::VOID);	
-		};
-	// };
+	if(!paused){
+		int x=0;
+		for (int i = 0; i < COLS; i++)
+			for (int j = 0; j < ROWS; j++){
+				particles[i][j]->update();
+			};
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){		
+		if(((this->mx>=0)&&(this->mx<COLS))&&((this->my>=0)&&(this->my<ROWS)))
+			if(particles[mx][my]->getType() == type_::VOID)
+				particles[mx][my]->changeType(type_::SAND);
+			else
+				particles[mx][my]->changeType(type_::VOID);	
+	};
 };
 
 void Base::updateEvents(){
@@ -87,13 +86,18 @@ void Base::updateEvents(){
 				case sf::Keyboard::R:				
 					initGrid();
 				break;
+				case sf::Keyboard::P:				
+					this->paused = !this->paused;
+				break;
 				default:
 					break;
 				}
 			break;
 			case sf::Event::MouseMoved:
+				if(!sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt)) 
 				this->mx = sf::Mouse::getPosition(*this->window).x/6;
-				this->my = sf::Mouse::getPosition(*this->window).y/6;
+				if(!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) 
+					this->my = sf::Mouse::getPosition(*this->window).y/6;
 				if(((this->mx>=0)&&(this->mx<COLS))&&((this->my>=0)&&(this->my<ROWS))){
 					this->cursor.setPosition(this->mx*6, this->my*6);
 				}

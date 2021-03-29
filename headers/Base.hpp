@@ -22,25 +22,18 @@ class Base{
 private:
 	const int HEIGHT = 800;
 	const int WIDTH = 600;
-	static const int COLS=30;
-	static const int ROWS=30;
+	static const int COLS=100;
+	static const int ROWS=100;
 	const char* TITLE = "SFML BASE";
 	sf::RenderWindow* window;
 	sf::Event event;
+
+	bool paused;
 
 	//Clock system
 	sf::Clock dtClock;
 	//delta time
 	float dt;
-
-	//World world;
-	// struct Particle{
-	// 	sf::Vector2f pos;
-	// 	sf::Vector2f size;
-	// 	sf::Color color;
-	// 	sf::RectangleShape body;
-	// 	_type type;
-	// };
 
 	sf::RectangleShape cursor;
 	int my, mx;
