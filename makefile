@@ -5,7 +5,7 @@ CFLAGS=-Wall -std=c++11
 DEPS=./headers/main.hpp ./headers/Base.hpp
 OF=./out/
 OBJ_MAIN=$(patsubst ./src/%,./out/%,$(patsubst %.cpp,%.o,$(wildcard ./src/*.cpp)))
-EXEC=SFML_Base
+EXEC=SandSim
 
 $(EXEC): clean $(OBJ_MAIN)
 	$(CC) $(OBJ_MAIN) -o $(EXEC) $(CLIB) $(CINCLUDE)
@@ -16,3 +16,5 @@ $(OBJ_MAIN):
 clean:
 	rm -fr ./out/*.o
 	echo "Cleaning done"
+
+	
