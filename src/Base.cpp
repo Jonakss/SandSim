@@ -90,6 +90,16 @@ void Base::update(){
 	// 			}
 	// 		}
 		};
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+
+			this->mx = sf::Mouse::getPosition(*this->window).x/6;
+			this->my = sf::Mouse::getPosition(*this->window).y/6;
+				if(((this->mx>=0)&&(this->mx<COLS))&&((this->my>=0)&&(this->my<ROWS)))
+					if(particles[mx][my]->getType() == type_::VOID)
+						particles[mx][my]->changeType(type_::SAND);
+					else
+						particles[mx][my]->changeType(type_::VOID);	
+		};
 	// };
 };
 
@@ -115,21 +125,22 @@ void Base::updateEvents(){
 					this->cursor.setPosition(this->mx*6, this->my*6);
 				}
 			break;
-			case sf::Event::MouseButtonPressed:
-				this->mx = sf::Mouse::getPosition(*this->window).x/6;
-				this->my = sf::Mouse::getPosition(*this->window).y/6;
-				if(((this->mx>=0)&&(this->mx<COLS))&&((this->my>=0)&&(this->my<ROWS))){
-					if (event.mouseButton.button == sf::Mouse::Left)
-						if(particles[mx][my]->getType() == type_::VOID)
-							particles[mx][my]->changeType(type_::SAND);
-						else
-							particles[mx][my]->changeType(type_::VOID);							
-					else if (event.mouseButton.button == sf::Mouse::Right)
-						continue;
-					else if (event.mouseButton.button == sf::Mouse::Middle)
-						continue;
-				};
-			break;
+			// case sf::Event::MouseButtonPressed:
+			// 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+
+			// 		this->mx = sf::Mouse::getPosition(*this->window).x/6;
+			// 		this->my = sf::Mouse::getPosition(*this->window).y/6;
+			// 			if(((this->mx>=0)&&(this->mx<COLS))&&((this->my>=0)&&(this->my<ROWS)))
+			// 				if(particles[mx][my]->getType() == type_::VOID)
+			// 					particles[mx][my]->changeType(type_::SAND);
+			// 				else
+			// 					particles[mx][my]->changeType(type_::VOID);							
+			// 			else if (event.mouseButton.button == sf::Mouse::Right)
+			// 				continue;
+			// 			else if (event.mouseButton.button == sf::Mouse::Middle)
+			// 				continue;
+			// 	};
+			// break;
 			default:
 				continue;
 		}

@@ -22,8 +22,8 @@ class Base{
 private:
 	const int HEIGHT = 800;
 	const int WIDTH = 600;
-	static const int COLS=45;
-	static const int ROWS=45;
+	static const int COLS=100;
+	static const int ROWS=100;
 	const char* TITLE = "SFML BASE";
 	sf::RenderWindow* window;
 	sf::Event event;
