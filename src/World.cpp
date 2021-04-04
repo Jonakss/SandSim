@@ -13,7 +13,7 @@ void World::initCells(){
     }
 
     Cells[5][5]->setParticle(new Particle(Types::SAND));
-    Cells[2][5]->setParticle(new Particle(Types::SAND));
+    Cells[5][6]->setParticle(new Particle(Types::SAND));
     Cells[3][2]->setParticle(new Particle(Types::SAND));
 
 
