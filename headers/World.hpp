@@ -1,5 +1,6 @@
 #ifndef WORLD_H
 #define WORLD_H
+
 #include "../headers/Cell.hpp"
 
 #include "SFML/Window.hpp"
@@ -7,20 +8,46 @@
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/Color.hpp"
 
+#include <vector>
+
+class Cell;
 
 class World{
 private:
-    typedef struct _chunk *chunk; 
-	static const int COLS=25;
-	static const int ROWS=25;
+    typedef struct _chunk *chunk;
+    typedef struct couple{
+        Cell* a;
+        Cell* b;
+    } c; 
+
+    std::vector<c> changes;
+
+	static const int COLS=30;
+	static const int ROWS=30;
     static const int CELL_SIZE = 5;
 
-	Cell *Cells[COLS*ROWS];
+    int x = 0;
+    int y = 0;
+
+	Cell *Cells[COLS][ROWS];
+
+    void setNeighborghood(int i, int j, int x, Cell *tn[8]);
 public:
     World();    
+    World(int x, int y);
+
+    void initCells();
+    
+    int getY();
+    void setY(int y);
+
+    int getX();
+    void setX(int x);
 
     void draw(sf::RenderTarget* w);
     void update();
+
+    void stackChanges(Cell *a, Cell *b);
 };
 
 #endif

@@ -1,7 +1,12 @@
+#ifndef CELL_H
+#define CELL_H
+
 #include "SFML/Graphics.hpp"
 
 #include "../headers/Particle.hpp"
+#include "../headers/World.hpp"
 
+class World;
 
 class Cell{
 
@@ -9,6 +14,7 @@ typedef Cell * pCell;
 
 private:
     Particle *p; //Particle inside this cell
+    World *w;
     pCell n[8]; //Nearest Cells
 
     int x, y, s; //Position x y, Size s
@@ -16,7 +22,7 @@ private:
 
     sf::Color particleColor();
 public:
-    Cell(int s, int x, int y);
+    Cell(int s, int x, int y, World *w);
     ~Cell();
 
     void update();
@@ -27,4 +33,7 @@ public:
         Set the particle a this actual Cell
     */
     void setParticle(Particle *p);
+    Particle* getParticle();
 };
+
+#endif

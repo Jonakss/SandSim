@@ -29,7 +29,7 @@ private:
 	
 	sf::Event event;
 
-	bool paused;
+	bool paused=1;
 	bool outline = 0;
 
 	//Clock system
@@ -37,10 +37,13 @@ private:
 	//delta time
 	float dt;
 
+	sf::Color background = sf::Color(169, 169, 169);
+
 	sf::RectangleShape cursor;
 	int my, mx;
 	
-	World world;
+	World *world;
+	// World *world2;
 
 	void initWindow();
 public:

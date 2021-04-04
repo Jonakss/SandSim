@@ -1,12 +1,13 @@
 #include "../headers/Cell.hpp"
 
-Cell::Cell(int s, int x, int y){
+Cell::Cell(int s, int x, int y, World *w){
     this->x = x;
     this->y = y;
     this->s = s;
 
     this->rs = sf::RectangleShape(sf::Vector2f(this->s, this->s));
-    this->rs.setPosition(sf::Vector2f(this->s*this->x, this->s*this->y));
+    this->rs.setPosition(sf::Vector2f(this->x*this->s, this->y*this->s));
+    this->w = w;
 }
 
 Cell::~Cell(){
@@ -19,10 +20,17 @@ void Cell::draw(sf::RenderTarget *rt){
     rt->draw(rs);
 }
 
-void Cell::update(){};
+void Cell::update(){
+    if(this->p!=nullptr){
+        this->p->update();
+        if(n[5] != nullptr && n[5]->p == nullptr){
+            this->w->stackChanges(this, n[5]);
+        }
+    };
+};
 
 sf::Color Cell::particleColor(){
-    if(this->p == nullptr) return sf::Color::White;
+    if(this->p == nullptr) return sf::Color::Black;
     if(this->p->getType() == Types::SAND) return sf::Color::Yellow;
     return sf::Color::White;
 };
@@ -42,4 +50,7 @@ void Cell::setParticle(Particle *p){
     this->p = p;   
 }
 
+Particle* Cell::getParticle(){
+    return this->p;
+};
 

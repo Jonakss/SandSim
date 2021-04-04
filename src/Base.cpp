@@ -21,6 +21,8 @@ void Base::initWindow(){
 		ifs >> vSync;
 	}
 
+	world = new World(5, 5);
+	// world2 = new World(50, 50);
 
 	ifs.close();
 
@@ -48,10 +50,12 @@ void Base::updateDt(){
 };
 
 void Base::render(){
-	this->window->clear();
+	this->window->clear(this->background);
 	// window->setView(*v);
 
-	world.draw(this->window);
+	world->draw(this->window);
+	// world2->draw(this->window);
+
 	//World draw, draw chuncks, return the pointers of the chunck
 	
 	// window->setView(window->getDefaultView());
@@ -63,7 +67,7 @@ void Base::render(){
 void Base::update(){
 	this->updateEvents();
 	if(!paused){
-		world.update();
+		world->update();
 	};
 };
 
@@ -82,7 +86,6 @@ void Base::updateEvents(){
 					this->paused = !this->paused;
 				break;
 				case sf::Keyboard::O:				
-					this->outline = !this->outline;
 				break;
 				default:
 					break;
