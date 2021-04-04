@@ -16,19 +16,21 @@
 #include "SFML/Audio.hpp"
 #include "SFML/Network.hpp"
 
-#include "./types.hpp"
+#include "../headers/World.hpp"
 
 class Base{
 private:
 	const int HEIGHT = 800;
 	const int WIDTH = 600;
-	static const int COLS=100;
-	static const int ROWS=100;
 	const char* TITLE = "SFML BASE";
+	
 	sf::RenderWindow* window;
+	sf::View* v;
+	
 	sf::Event event;
 
 	bool paused;
+	bool outline = 0;
 
 	//Clock system
 	sf::Clock dtClock;
@@ -38,7 +40,7 @@ private:
 	sf::RectangleShape cursor;
 	int my, mx;
 	
-	Particle *particles[COLS][ROWS];
+	World world;
 
 	void initWindow();
 public:
@@ -51,7 +53,6 @@ public:
 	void update();
 	void updateEvents();
 	void run();
-	void initGrid();
 };
 
 #endif

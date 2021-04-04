@@ -1,6 +1,6 @@
 #ifndef WORLD_H
 #define WORLD_H
-#include "../headers/Particle.hpp"
+#include "../headers/Cell.hpp"
 
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
@@ -10,16 +10,16 @@
 
 class World{
 private:
+    typedef struct _chunk *chunk; 
 	static const int COLS=25;
 	static const int ROWS=25;
+    static const int CELL_SIZE = 5;
 
-	Particle *particles[COLS*ROWS];
-    sf::RectangleShape particlesBody[COLS*ROWS];
+	Cell *Cells[COLS*ROWS];
 public:
     World();    
-    //Particle* getParticle(int x, int y){ return (x<=COLS)&&(y<=ROWS)&&(y>=0)&&(x>=0)?this->particles[x][y]:nullptr;};
 
-    void draw(sf::RenderWindow* w);
+    void draw(sf::RenderTarget* w);
     void update();
 };
 
