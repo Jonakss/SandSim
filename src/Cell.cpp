@@ -5,10 +5,19 @@
 Cell::Cell(int s, int x, int y, World *w){
     this->x = x;
     this->y = y;
-    this->s = s;
+    this->s = s; //Diameter
 
-    this->rs = sf::RectangleShape(sf::Vector2f(this->s, this->s));
-    this->rs.setPosition(sf::Vector2f(this->x*this->s, this->y*this->s));
+    this->body = sf::CircleShape(this->s, 6);
+    this->body.setOrigin(this->s/2, this->s/2);
+
+    this->body.setPosition(sf::Vector2f((this->y % 2 * this->s/2)+this->x*this->s, (this->y % 2 * this->s/2)+this->s * this->y));
+
+
+    
+    // this->body.setPosition(sf::Vector2f(this->x*this->s, this->y*this->s));
+
+    // this->rs = sf::RectangleShape(sf::Vector2f(this->s, this->s));
+    // this->rs.setPosition(sf::Vector2f(this->x*this->s, this->y*this->s));
     this->w = w;
 }
 
@@ -17,9 +26,9 @@ Cell::~Cell(){
 }
 
 void Cell::draw(sf::RenderTarget *rt){
-    this->rs.setFillColor(particleColor());
+    this->body.setFillColor(particleColor());
 
-    rt->draw(rs);
+    rt->draw(body);
 }
 
 bool Cell::emptyBelow(Cell *c){

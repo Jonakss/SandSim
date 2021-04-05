@@ -25,6 +25,8 @@ private:
 
     int x, y, s; //Position x y, Size s
 	sf::RectangleShape rs;
+    // sf::Vertex body[6];
+    sf::CircleShape body;
 
     sf::Color particleColor();
 
