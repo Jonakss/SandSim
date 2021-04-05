@@ -7,6 +7,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/Color.hpp"
+#include <math.h>
 
 #include <vector>
 
@@ -22,9 +23,9 @@ private:
 
     std::vector<c> changes;
 
-	static const int COLS=30;
-	static const int ROWS=30;
-    static const int CELL_SIZE = 5;
+	static const int COLS=35;
+	static const int ROWS=35;
+    static const int CELL_SIZE = 15;
 
     int x = 0;
     int y = 0;
@@ -48,6 +49,7 @@ public:
     void update();
 
     void stackChanges(Cell *a, Cell *b);
+    void newParticle(int i, int j);
 };
 
 #endif

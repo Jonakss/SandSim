@@ -10,7 +10,7 @@
 #include "SFML/Graphics.hpp"
 
 enum Types{
-	SAND
+	SAND, WATER
 };
 typedef enum Types type;
 

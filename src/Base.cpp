@@ -9,7 +9,7 @@ void Base::initWindow(){
 	unsigned frameRateLimit = 120;
 	bool vSync = false;
 
-	this->cursor = sf::RectangleShape(sf::Vector2f(5, 5));
+	this->cursor = sf::RectangleShape(sf::Vector2f(15, 15));
 	this->cursor.setFillColor(sf::Color::Transparent);
 	this->cursor.setOutlineColor(sf::Color::Red);
 	this->cursor.setOutlineThickness(1);
@@ -21,7 +21,7 @@ void Base::initWindow(){
 		ifs >> vSync;
 	}
 
-	world = new World(5, 5);
+	world = new World(4, 4);
 	// world2 = new World(50, 50);
 
 	ifs.close();
@@ -93,11 +93,16 @@ void Base::updateEvents(){
 			break;
 			case sf::Event::MouseMoved:
 				if(!sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt)) 
-				this->mx = sf::Mouse::getPosition(*this->window).x/5+this->outline;
+				this->mx = sf::Mouse::getPosition(*this->window).x/15+this->outline;
 				if(!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
-					this->my = sf::Mouse::getPosition(*this->window).y/5+this->outline;
-					this->cursor.setPosition(this->mx*5+this->outline, this->my*5+this->outline);
+					this->my = sf::Mouse::getPosition(*this->window).y/15+this->outline;
+					this->cursor.setPosition(this->mx*15+this->outline, this->my*15+this->outline);
 				}
+			break;
+			case sf::Event::MouseButtonPressed:
+			if (this->event.mouseButton.button == sf::Mouse::Right)
+				if(mx >= this->world->getX() && my >= this->world->getY())
+					this->world->newParticle(mx-this->world->getX(), my-this->world->getX());
 			break;
 			default:
 				continue;

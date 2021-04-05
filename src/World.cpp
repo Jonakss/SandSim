@@ -14,6 +14,7 @@ void World::initCells(){
 
     Cells[5][5]->setParticle(new Particle(Types::SAND));
     Cells[5][6]->setParticle(new Particle(Types::SAND));
+    Cells[5][15]->setParticle(new Particle(Types::WATER));
     Cells[3][2]->setParticle(new Particle(Types::SAND));
 
 
@@ -59,11 +60,13 @@ void World::update(){
         };
     
     c cc;
-
+    Particle *p;
     while(changes.size() > 0){
-        changes.back().b->setParticle(changes.back().a->getParticle());
-        changes.back().a->setParticle(nullptr);
+        p=changes.back().a->getParticle();
+        changes.back().a->setParticle(changes.back().b->getParticle());
+        changes.back().b->setParticle(p);
         changes.pop_back();
+        p=nullptr;
     };
 };
 
@@ -80,3 +83,13 @@ void World::stackChanges(Cell *a, Cell *b){
     this->changes.push_back(cc);
 };
 
+void World::newParticle(int i, int j){
+    if(i < COLS && j < ROWS)
+        if(Cells[i][j]->getParticle()==nullptr)
+            if(floor(rand()%5)==1)
+                Cells[i][j]->setParticle(new Particle(Types::SAND));
+            else
+                Cells[i][j]->setParticle(new Particle(Types::WATER));
+
+
+};

@@ -1,4 +1,6 @@
 #include "../headers/Cell.hpp"
+#include <math.h>
+#include <stdlib.h> 
 
 Cell::Cell(int s, int x, int y, World *w){
     this->x = x;
@@ -23,8 +25,31 @@ void Cell::draw(sf::RenderTarget *rt){
 void Cell::update(){
     if(this->p!=nullptr){
         this->p->update();
-        if(n[5] != nullptr && n[5]->p == nullptr){
-            this->w->stackChanges(this, n[5]);
+        switch (this->p->getType()){
+        case WATER:
+            if(n[5] != nullptr && n[5]->p == nullptr){
+                this->w->stackChanges(this, n[5]);
+            }else if(n[6] != nullptr && n[6]->p == nullptr){
+                    this->w->stackChanges(this, n[6]);
+            }else if(n[4] != nullptr && n[4]->p == nullptr){
+                    this->w->stackChanges(this, n[4]);
+            }
+            else if(n[3] != nullptr && n[3]->p == nullptr)
+                this->w->stackChanges(this, n[3]);
+            // else if(n[7] != nullptr && n[7]->p == nullptr)
+            //     this->w->stackChanges(this, n[7]);
+        break;
+        case SAND:
+            if(n[5] != nullptr && (n[5]->p == nullptr || n[5]->p->getType() == WATER)){
+                    this->w->stackChanges(this, n[5]);                
+            }else if(n[6] != nullptr && (n[6]->p == nullptr || n[6]->p->getType() == WATER && rand()&1)){
+                this->w->stackChanges(this, n[6]);
+            }else if(n[4] != nullptr && (n[4]->p == nullptr || n[4]->p->getType() == WATER)){
+                this->w->stackChanges(this, n[4]);
+            };
+        break;
+        default:
+            break;
         }
     };
 };
@@ -32,6 +57,7 @@ void Cell::update(){
 sf::Color Cell::particleColor(){
     if(this->p == nullptr) return sf::Color::Black;
     if(this->p->getType() == Types::SAND) return sf::Color::Yellow;
+    if(this->p->getType() == Types::WATER) return sf::Color::Cyan;
     return sf::Color::White;
 };
 
