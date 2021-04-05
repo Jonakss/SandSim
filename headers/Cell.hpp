@@ -21,6 +21,10 @@ private:
 	sf::RectangleShape rs;
 
     sf::Color particleColor();
+
+    //Helpers
+    bool emptyBelow(Cell *c);
+    bool emptyBelowWater(Cell *c);
 public:
     Cell(int s, int x, int y, World *w);
     ~Cell();
@@ -34,6 +38,8 @@ public:
     */
     void setParticle(Particle *p);
     Particle* getParticle();
+
+
 };
 
 #endif

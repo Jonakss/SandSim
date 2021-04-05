@@ -100,7 +100,7 @@ void Base::updateEvents(){
 				}
 			break;
 			case sf::Event::MouseButtonPressed:
-			if (this->event.mouseButton.button == sf::Mouse::Right)
+			if (this->event.mouseButton.button == sf::Mouse::Left)
 				if(mx >= this->world->getX() && my >= this->world->getY())
 					this->world->newParticle(mx-this->world->getX(), my-this->world->getX());
 			break;

@@ -22,31 +22,38 @@ void Cell::draw(sf::RenderTarget *rt){
     rt->draw(rs);
 }
 
+bool Cell::emptyBelow(Cell *c){
+   return c != nullptr && (c->p == nullptr || c->p->getType() == WATER);
+};
+
+bool Cell::emptyBelowWater(Cell *c){
+    return c != nullptr && c->p == nullptr;
+};
+
 void Cell::update(){
     if(this->p!=nullptr){
         this->p->update();
         switch (this->p->getType()){
         case WATER:
-            if(n[5] != nullptr && n[5]->p == nullptr){
+            if(emptyBelowWater(n[5]))
                 this->w->stackChanges(this, n[5]);
-            }else if(n[6] != nullptr && n[6]->p == nullptr){
+            else if(emptyBelowWater(n[6]))
                     this->w->stackChanges(this, n[6]);
-            }else if(n[4] != nullptr && n[4]->p == nullptr){
+            else if(emptyBelowWater(n[4]))
                     this->w->stackChanges(this, n[4]);
-            }
-            else if(n[3] != nullptr && n[3]->p == nullptr)
+            else if(emptyBelowWater(n[3]))
                 this->w->stackChanges(this, n[3]);
-            // else if(n[7] != nullptr && n[7]->p == nullptr)
-            //     this->w->stackChanges(this, n[7]);
+            else if(emptyBelowWater(n[7]))
+                this->w->stackChanges(this, n[7]);
         break;
         case SAND:
-            if(n[5] != nullptr && (n[5]->p == nullptr || n[5]->p->getType() == WATER)){
-                    this->w->stackChanges(this, n[5]);                
-            }else if(n[6] != nullptr && (n[6]->p == nullptr || n[6]->p->getType() == WATER && rand()&1)){
+            if(emptyBelow(n[5]))
+                this->w->stackChanges(this, n[5]);                
+            else if(emptyBelow(n[6]) && rand()&1)
                 this->w->stackChanges(this, n[6]);
-            }else if(n[4] != nullptr && (n[4]->p == nullptr || n[4]->p->getType() == WATER)){
+            else if(emptyBelow(n[4]))
                 this->w->stackChanges(this, n[4]);
-            };
+            
         break;
         default:
             break;
