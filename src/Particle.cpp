@@ -1,11 +1,13 @@
 #include "../headers/Particle.hpp"
-
-Particle::Particle(){
-};
+#include "../headers/Water.hpp"
 
 Particle::Particle(type t){
     this->t = t;
 };
+
+Particle::Particle(){
+};
+
 
 Particle::~Particle(){
   //  delete neighbor;

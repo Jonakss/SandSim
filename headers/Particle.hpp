@@ -21,8 +21,9 @@ public:
 	Particle(type t);
 	~Particle();
 
+	sf::Color c = sf::Color::White;
 
-	void update();
+	virtual void update();
 	type getType();
 	void changeType(type t);
 

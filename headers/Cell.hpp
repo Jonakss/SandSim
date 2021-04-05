@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 
 #include "../headers/Particle.hpp"
+#include "../headers/Water.hpp"
 #include "../headers/World.hpp"
 
 class World;
@@ -11,7 +12,10 @@ class World;
 class Cell{
 
 typedef Cell * pCell;
-
+protected:
+    //Helpers
+    bool emptyBelow(Cell *c);
+    bool emptyBelowWater(Cell *c);
 private:
     Particle *p; //Particle inside this cell
     World *w;
@@ -22,14 +26,11 @@ private:
 
     sf::Color particleColor();
 
-    //Helpers
-    bool emptyBelow(Cell *c);
-    bool emptyBelowWater(Cell *c);
 public:
     Cell(int s, int x, int y, World *w);
     ~Cell();
 
-    void update();
+    virtual void update();
     void draw(sf::RenderTarget *rt);
 
 	void setNeighborhood(pCell n[8]);

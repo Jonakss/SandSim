@@ -89,7 +89,7 @@ void World::newParticle(int i, int j){
             if(floor(rand()%5)==1)
                 Cells[i][j]->setParticle(new Particle(Types::SAND));
             else
-                Cells[i][j]->setParticle(new Particle(Types::WATER));
+                Cells[i][j]->setParticle(new Water());
 
 
 };

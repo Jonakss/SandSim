@@ -35,6 +35,11 @@ void Cell::update(){
         this->p->update();
         switch (this->p->getType()){
         case WATER:
+            if(n[1]!=nullptr && n[1]->p!=nullptr && n[1]->p->getType() == type::WATER)
+                ((Water *)this->p)->setPressure(((Water *)n[1]->p)->getPressure()+1);
+            else
+                ((Water *)this->p)->setPressure(1);
+            
             if(emptyBelowWater(n[5]))
                 this->w->stackChanges(this, n[5]);
             else if(emptyBelowWater(n[6]))
@@ -43,8 +48,10 @@ void Cell::update(){
                     this->w->stackChanges(this, n[4]);
             else if(emptyBelowWater(n[3]))
                 this->w->stackChanges(this, n[3]);
-            else if(emptyBelowWater(n[7]))
-                this->w->stackChanges(this, n[7]);
+            // else if(emptyBelowWater(n[7]))
+            //     this->w->stackChanges(this, n[7]);
+            
+            
         break;
         case SAND:
             if(emptyBelow(n[5]))
@@ -63,9 +70,9 @@ void Cell::update(){
 
 sf::Color Cell::particleColor(){
     if(this->p == nullptr) return sf::Color::Black;
-    if(this->p->getType() == Types::SAND) return sf::Color::Yellow;
-    if(this->p->getType() == Types::WATER) return sf::Color::Cyan;
-    return sf::Color::White;
+    // if(this->p->getType() == Types::SAND) return sf::Color::Yellow;
+    // if(this->p->getType() == Types::WATER) return sf::Color::Cyan;
+    return this->p->c;
 };
 
 void Cell::setNeighborhood(pCell n[8]){
