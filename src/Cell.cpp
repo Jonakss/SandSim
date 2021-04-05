@@ -70,8 +70,6 @@ void Cell::update(){
 
 sf::Color Cell::particleColor(){
     if(this->p == nullptr) return sf::Color::Black;
-    // if(this->p->getType() == Types::SAND) return sf::Color::Yellow;
-    // if(this->p->getType() == Types::WATER) return sf::Color::Cyan;
     return this->p->c;
 };
 

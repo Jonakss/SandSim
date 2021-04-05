@@ -3,9 +3,11 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "../headers/World.hpp"
+
 #include "../headers/Particle.hpp"
 #include "../headers/Water.hpp"
-#include "../headers/World.hpp"
+#include "../headers/Sand.hpp"
 
 class World;
 

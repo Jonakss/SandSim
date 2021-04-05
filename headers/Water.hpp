@@ -10,6 +10,8 @@ public:
     Water();
     ~Water();
 
+    static const unsigned int MAX_PRESSURE = 10;
+
     void update();
     void setPressure(unsigned int pressure);
     unsigned int getPressure();

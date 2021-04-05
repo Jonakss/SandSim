@@ -12,10 +12,10 @@ void World::initCells(){
         this->Cells[i][j] = new Cell(CELL_SIZE, i+x, j+y, this);
     }
 
-    Cells[5][5]->setParticle(new Particle(Types::SAND));
-    Cells[5][6]->setParticle(new Particle(Types::SAND));
-    Cells[5][15]->setParticle(new Particle(Types::WATER));
-    Cells[3][2]->setParticle(new Particle(Types::SAND));
+    Cells[5][5]->setParticle(new Sand());
+    Cells[5][6]->setParticle(new Sand());
+    Cells[5][15]->setParticle(new Water());
+    Cells[3][2]->setParticle(new Sand());
 
 
     Cell *tn[8];
@@ -87,7 +87,7 @@ void World::newParticle(int i, int j){
     if(i < COLS && j < ROWS)
         if(Cells[i][j]->getParticle()==nullptr)
             if(floor(rand()%5)==1)
-                Cells[i][j]->setParticle(new Particle(Types::SAND));
+                Cells[i][j]->setParticle(new Sand());
             else
                 Cells[i][j]->setParticle(new Water());
 
