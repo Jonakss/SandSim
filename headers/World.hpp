@@ -36,6 +36,7 @@ private:
 public:
     World();    
     World(int x, int y);
+    ~World();
 
     void initCells();
     

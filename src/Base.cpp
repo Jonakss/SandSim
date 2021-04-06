@@ -41,6 +41,7 @@ Base::Base(){
 };
 
 Base::~Base(){
+	delete this->world;
 	delete this->window;
 };
 
