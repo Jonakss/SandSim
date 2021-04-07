@@ -10,6 +10,8 @@
 //#include "../headers/World.hpp"
 #include "../headers/Particle.hpp"
 
+#include "../headers/ui.hpp"
+
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
@@ -27,6 +29,8 @@ private:
 	const char* TITLE = "SFML BASE";
 	sf::RenderWindow* window;
 	sf::Event event;
+
+	ui UI;
 
 	bool paused;
 

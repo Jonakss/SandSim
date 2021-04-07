@@ -51,7 +51,7 @@ void Base::render(){
 			particles[i][j]->draw(this->window);
 		};
 	};
-	
+	this->UI.render(this->window);
 	this->window->draw(this->cursor);
 
 	this->window->display();
