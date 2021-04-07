@@ -11,13 +11,15 @@ void ui::addElement(){
     c.a = 80;
     r->setFillColor(c);
     this->elements.push_back(r);
+
+    s1 = Slider();
 };
 
 void ui::render(sf::RenderTarget *rt){
     for (int i = 0; i < this->elements.size(); i++){
         rt->draw(*this->elements[i]);
     }
-    
+    s1.draw(rt);
 };
 
 void ui::update(){
