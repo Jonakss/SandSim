@@ -1,8 +1,9 @@
 #include "SFML/Graphics.hpp"
+#include <vector>
 
 class ui{
 private:
-    /* data */
+    std::vector<sf::RectangleShape *> elements;
 public:
     ui(/* args */);
     ~ui();

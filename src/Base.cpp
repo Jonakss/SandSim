@@ -26,6 +26,8 @@ void Base::initWindow(){
 	this->window = new sf::RenderWindow(windowConf, title);
 	this->window->setFramerateLimit(frameRateLimit);
 	this->window->setVerticalSyncEnabled(vSync);
+
+	this->UI.addElement();
 };
 
 Base::Base(){
