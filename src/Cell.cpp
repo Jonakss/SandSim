@@ -3,6 +3,7 @@
 #include <stdlib.h> 
 
 Cell::Cell(int s, int x, int y, World *w){
+    this-> p = nullptr;
     this->x = x;
     this->y = y;
     this->s = s;
@@ -13,7 +14,7 @@ Cell::Cell(int s, int x, int y, World *w){
 }
 
 Cell::~Cell(){
-
+    if(this->p != nullptr) delete p;
 }
 
 void Cell::draw(sf::RenderTarget *rt){
@@ -35,10 +36,10 @@ void Cell::update(){
         this->p->update();
         switch (this->p->getType()){
         case WATER:
-            if(n[1]!=nullptr && n[1]->p!=nullptr && n[1]->p->getType() == type::WATER)
-                ((Water *)this->p)->setPressure(((Water *)n[1]->p)->getPressure()+1);
-            else
-                ((Water *)this->p)->setPressure(1);
+            // if(n[1]!=nullptr && n[1]->p!=nullptr && n[1]->p->getType() == type::WATER)
+            //     ((Water *)this->p)->setPressure(((Water *)n[1]->p)->getPressure()+1);
+            // else
+            //     ((Water *)this->p)->setPressure(1);
             
             if(emptyBelowWater(n[5]))
                 this->w->stackChanges(this, n[5]);

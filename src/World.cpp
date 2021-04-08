@@ -46,6 +46,13 @@ World::World(){
     initCells();
 };
 
+World::~World(){
+    for (int i = 0; i < ROWS; i++)
+    for (int j = 0; j < COLS; j++){
+        delete Cells[i][j];
+    };
+};
+
 void World::draw(sf::RenderTarget* w){
     for (int i = 0; i < ROWS; i++)
         for (int j = 0; j < COLS; j++){
