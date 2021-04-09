@@ -11,7 +11,7 @@ void Hexagon::setPoints(){
         float angle_rad = PI / 180 * angle_deg;
         
         this->body[i] = sf::Vertex(sf::Vector2f(this->x + this->r * cos(angle_rad),
-            this->y + this->r * sin(angle_rad)), sf::Color::Red);
+            (this->y + this->r * sin(angle_rad))), sf::Color::Red);
     };    
 };
 
@@ -20,14 +20,24 @@ Hexagon::Hexagon(float x, float y, float r){
     this->y = y;
     this->r = r;
 
-    this->setPosition(sf::Vector2f(x, y));
-
     this->body = sf::VertexArray(sf::TriangleFan, 8);
     setPoints();
+
 };
 
 Hexagon::~Hexagon(){
 
+};
+
+void Hexagon::setPosition(sf::Vector2f pos){
+    this->body[0].position = pos;
+    for (int i = 0; i <= SIDES; i++){
+        float angle_deg = ANGLE * i - 30;
+        float angle_rad = PI / 180 * angle_deg;
+        
+        this->body[i] = sf::Vertex(sf::Vector2f((pos.x + this->r * cos(angle_rad))+this->r*2,
+            pos.y + this->r * sin(angle_rad)), sf::Color::Red);
+    };    
 };
 
 void Hexagon::setFillColor(sf::Color c){

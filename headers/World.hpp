@@ -23,8 +23,8 @@ private:
 
     std::vector<c> changes;
 
-	static const int COLS=35;
-	static const int ROWS=35;
+	static const int COLS=25;
+	static const int ROWS=25;
     static const int CELL_SIZE = 15;
 
     int x = 0;

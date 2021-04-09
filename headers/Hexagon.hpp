@@ -14,6 +14,7 @@ public:
     Hexagon(float x, float y, float r);
     ~Hexagon();
     void setFillColor(sf::Color);
+    void setPosition(sf::Vector2f);
 };
 
 #endif
