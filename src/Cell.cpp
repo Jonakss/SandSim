@@ -7,10 +7,12 @@ Cell::Cell(int s, int x, int y, World *w){
     this->y = y;
     this->s = s; //Diameter
 
-    this->body = sf::CircleShape(this->s, 6);
-    this->body.setOrigin(this->s/2, this->s/2);
+    // this->body = sf::CircleShape(this->s, 6);
+    // this->body.setOrigin(this->s/2, this->s/2);
 
-    this->body.setPosition(sf::Vector2f((this->y % 2 * this->s/2)+this->x*this->s, (this->y % 2 * this->s/2)+this->s * this->y));
+    // this->body.setPosition(sf::Vector2f((this->y % 2 * this->s/2)+this->x*this->s, (this->y % 2 * this->s/2)+this->s * this->y));
+
+    this->hex = new Hexagon(x*this->s/2, y*this->s/2, s);
 
 
     
@@ -26,9 +28,10 @@ Cell::~Cell(){
 }
 
 void Cell::draw(sf::RenderTarget *rt){
-    this->body.setFillColor(particleColor());
+    this->hex->setFillColor(particleColor());
 
-    rt->draw(body);
+    // rt->draw(body);
+    rt->draw(*this->hex);
 }
 
 bool Cell::emptyBelow(Cell *c){

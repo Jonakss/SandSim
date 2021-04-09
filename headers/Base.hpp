@@ -18,6 +18,8 @@
 
 #include "../headers/World.hpp"
 
+#include "../headers/Hexagon.hpp"
+
 class Base{
 private:
 	const int HEIGHT = 800;

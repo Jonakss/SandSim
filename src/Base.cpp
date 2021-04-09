@@ -29,7 +29,6 @@ void Base::initWindow(){
 	this->window = new sf::RenderWindow(windowConf, title);
 	this->window->setFramerateLimit(frameRateLimit);
 	this->window->setVerticalSyncEnabled(vSync);
-
 	// v = new sf::View();
 	// v->reset(sf::FloatRect(10, 10, 100, 100));
 };

@@ -2,12 +2,18 @@
 #define CELL_H
 
 #include "SFML/Graphics.hpp"
+#include "../headers/Hexagon.hpp"
 
 #include "../headers/World.hpp"
 
 #include "../headers/Particle.hpp"
 #include "../headers/Water.hpp"
 #include "../headers/Sand.hpp"
+
+// template<> Water;
+// template<> Sand;
+
+// template<class T> T*();
 
 class World;
 
@@ -24,9 +30,10 @@ private:
     pCell n[8]; //Nearest Cells
 
     int x, y, s; //Position x y, Size s
-	sf::RectangleShape rs;
+    Hexagon *hex;
+	// sf::RectangleShape rs;
     // sf::Vertex body[6];
-    sf::CircleShape body;
+    // sf::CircleShape body;
 
     sf::Color particleColor();
 
