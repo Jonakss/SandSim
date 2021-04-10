@@ -12,17 +12,17 @@ Cell::Cell(int s, int x, int y, World *w){
 
     // this->body.setPosition(sf::Vector2f((this->y % 2 * this->s/2)+this->x*this->s, (this->y % 2 * this->s/2)+this->s * this->y));
 
-    // this->hex = new Hexagon(
-    //     x   *   (this->s+this->s/2+3), 
-    //     y   *   (this->s+sqrt(3)*this->s/2),
-    //     s
-    // );
-
     this->hex = new Hexagon(
-        this->s * sqrt(3) * (this->x+ 0.5 * (this->y%2)),
-        this->s * 3/2 * this->y,
+        x   *   (this->s+this->s/2+3), 
+        y   *   (this->s+sqrt(3)*this->s/2),
         s
     );
+
+    // this->hex = new Hexagon(
+    //     this->s * sqrt(3) * (this->x+ 0.5 * (this->y%2)),
+    //     this->s * 3/2 * this->y,
+    //     s
+    // );
 
     
     // this->body.setPosition(sf::Vector2f(this->x*this->s, this->y*this->s));
