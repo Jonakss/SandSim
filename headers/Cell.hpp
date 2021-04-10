@@ -50,8 +50,7 @@ public:
     */
     void setParticle(Particle *p);
     Particle* getParticle();
-
-
+    void deleteParticle();
 };
 
 #endif

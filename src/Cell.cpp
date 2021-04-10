@@ -69,8 +69,8 @@ void Cell::update(){
                     this->w->stackChanges(this, n[4]);
             else if(emptyBelowWater(n[3]))
                 this->w->stackChanges(this, n[3]);
-            // else if(emptyBelowWater(n[7]))
-            //     this->w->stackChanges(this, n[7]);
+            else if(emptyBelowWater(n[7]))
+                this->w->stackChanges(this, n[7]);
             
             
         break;
@@ -113,3 +113,7 @@ Particle* Cell::getParticle(){
     return this->p;
 };
 
+void Cell::deleteParticle(){
+    delete this->p;
+    this->p=nullptr;
+};

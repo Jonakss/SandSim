@@ -23,8 +23,8 @@ private:
 
     std::vector<c> changes;
 
-	static const int COLS=25;
-	static const int ROWS=25;
+	static const int COLS=20;
+	static const int ROWS=20;
     static const int CELL_SIZE = 15;
 
     int x = 0;
@@ -50,6 +50,8 @@ public:
 
     void stackChanges(Cell *a, Cell *b);
     void newParticle(int i, int j);
+    void deleteParticle(int i, int j);
+    void interact(int i, int j);
 };
 
 #endif

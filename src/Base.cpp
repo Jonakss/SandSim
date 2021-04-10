@@ -101,7 +101,8 @@ void Base::updateEvents(){
 			case sf::Event::MouseButtonPressed:
 			if (this->event.mouseButton.button == sf::Mouse::Left)
 				if(mx >= this->world->getX() && my >= this->world->getY())
-					this->world->newParticle(mx-this->world->getX(), my-this->world->getX());
+					this->world->interact(mx-this->world->getX(), my-this->world->getX());
+
 			break;
 			default:
 				continue;

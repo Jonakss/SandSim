@@ -90,6 +90,17 @@ void World::newParticle(int i, int j){
                 Cells[i][j]->setParticle(new Sand());
             else
                 Cells[i][j]->setParticle(new Water());
+};
 
+void World::deleteParticle(int i, int j){
+    if(i < COLS && j < ROWS)
+        if(Cells[i][j]->getParticle()!=nullptr)
+                Cells[i][j]->deleteParticle();
+}
 
+void World::interact(int i, int j){
+    if(this->Cells[i][j]->getParticle() == nullptr)
+        this->newParticle(i, j);
+    else
+        this->deleteParticle(i, j);
 };
