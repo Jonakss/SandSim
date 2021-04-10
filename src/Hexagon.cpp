@@ -7,7 +7,7 @@
 void Hexagon::setPoints(){
     this->body[0] = sf::Vertex(sf::Vector2f(x, y), sf::Color::Green);
     for (int i = 1; i <= SIDES+1; i++){
-        float angle_deg = ANGLE * i;
+        float angle_deg = ANGLE * i - 30;
         float angle_rad = PI / 180 * angle_deg;
         
         this->body[i] = sf::Vertex(sf::Vector2f(this->x + this->r * cos(angle_rad),
